@@ -11,7 +11,7 @@ async function getFile(pathFrom) {
       if (stats.isFile()) {
         const name = parse(item).name;
         const ext = parse(item).ext.slice(1);
-        stdout.write(`${name} - ${ext} - ${stats.size} byte`);
+        stdout.write(`${name} - ${ext} - ${stats.size} byte\n`);
       }
     }
   }
