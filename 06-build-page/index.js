@@ -20,7 +20,7 @@ async function buildHtml() {
    let template = await readFile(templateFiles, 'utf8');
    const files = await readdir(componentsPath);
    const arr = [];
-   console.log('\n HTML file is ready! Check out project-dist/')
+   console.log('\n HTML file is ready. Check out project-dist/')
 
    for await (const file of files) {
        const text = await readFile(`${componentsPath}${file}`, 'utf8');
@@ -38,7 +38,6 @@ buildHtml();
 
 let writeableStream = fs.createWriteStream(`${projectPath}style.css`);
 function buildCSS() {
-   //   let writeableStream = [];
 
   fs.readdir(stylePath, (err, files) => {
    if (err) {
@@ -52,12 +51,11 @@ function buildCSS() {
            if (ext === 'css') {
                let readableStream = fs.createReadStream(`${stylePath}${file}`, "utf8");
 
-               //свяжем поток для чтения и поток для записи, для счета из потока чтения в поток записи
                readableStream.pipe(writeableStream);
            }
        });
    });
-   console.log('\n CSS file is ready! Check out project-dist/')
+   console.log('\n CSS file is ready. Check out project-dist/')
 }
 buildCSS();
 
@@ -76,7 +74,6 @@ const copyAssets = (assetsPath, assetsProjectPath) => {
          } 
          else {
             if (stats.isDirectory()) {
-               // console.log('check')
                return copyAssets(path.join(__dirname, `assets/${file}/`), path.join(__dirname, `project-dist/assets/${file}/`));
             }
             fs.copyFile(`${assetsPath}${file}`,
